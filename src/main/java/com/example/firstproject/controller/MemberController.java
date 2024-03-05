@@ -49,4 +49,21 @@ public class MemberController {
         return "members/index";
     }
 
+    @GetMapping("/members/{id}/edit")
+    public String edit(@PathVariable Long id, Model model){
+        Member member = memberRepository.findById(id).orElse(null);
+        model.addAttribute("member",member);
+        return "members/edit";
+    }
+
+    @PostMapping("/members/update")
+    public String update(MemberForm form, Model model){
+        Member member = form.toEntity();
+        if(member != null){
+            memberRepository.save(member);
+        }
+        model.addAttribute("member",member);
+        return "redirect:/members/" + member.getId();
+
+    }
 }
