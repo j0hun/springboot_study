@@ -29,4 +29,7 @@ public class Article {
             this.content = article.content;
         }
     }
+
+
+
 }
