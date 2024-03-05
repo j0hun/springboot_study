@@ -31,7 +31,7 @@ public class ArticleController {
         Article article = form.toEntity();
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}")
@@ -39,7 +39,7 @@ public class ArticleController {
         log.info("id = " + id);
         Article articleEntity = articleRepository.findById(id).orElse(null);
         model.addAttribute("article",articleEntity);
-        return "articles/new";
+        return "articles/show";
     }
 
     @GetMapping("/articles")
